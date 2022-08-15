@@ -41,10 +41,11 @@ def demo(data, save, depth=40, growth_rate=12, batch_size=256):
 
     model = ModelWithTemperature(orig_model)
     diffs = []
-    for _ in range(100):
+    for i in range(1, 100 + 1):
       old_ece = model.set_temperature(valid_loader)
       new_ece = model.set_temperature(valid_loader)
       diffs.append((new_ece - old_ece))
+      print(f"{i} / 100")
 
     print(f"Mean ECE difference after calibrating twice: {statistics.mean(diffs)}")
 
