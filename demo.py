@@ -39,6 +39,7 @@ def demo(data, save, depth=40, growth_rate=12, batch_size=256):
     ).cuda()
     orig_model.load_state_dict(state_dict)
 
+    model = ModelWithTemperature(orig_model)
     diffs = []
     for _ in range(100):
       old_ece = model.set_temperature(valid_loader)
